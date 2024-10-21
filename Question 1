@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start and Stop Counter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #82e3d3;
+            font-family: Arial, sans-serif;
+        }
+
+        .counter-container {
+            text-align: center;
+            background: #91a2f4;
+            padding: 350px;
+            border-radius: 3rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          
+        }
+
+        .counter {
+            font-size: 12rem;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        button {
+    padding: 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 1s ease; 
+}
+
+@keyframes startColorChange {
+    0% {
+        background-color: #5bd05f;
+    }
+    50% {
+        background-color: #2a7e1b;
+    }
+    100% {
+        background-color: #16df1dda;
+    }
+}
+
+@keyframes stopColorChange {
+    0% {
+        background-color: #b96e69;
+    }
+    50% {
+        background-color: #e21010;
+    }
+    100% {
+        background-color: #f44336;
+    }
+}
+
+.start-btn {
+    color: white;
+    font-size: 3rem;
+    border-radius: 4.6rem;
+    animation: startColorChange 2s infinite;
+}
+
+.stop-btn {
+    color: white;
+    font-size: 3rem;
+    border-radius: 4.6rem;
+    border-color: #cb35e2;
+    animation: stopColorChange 2s infinite;
+}
+
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <div class="counter" id="counter">0</div>
+        <div class="buttons">
+            <button class="start-btn" onclick="startCounter()">Start</button>
+            <button class="stop-btn" onclick="stopCounter()">Stop</button>
+        </div>
+    </div>
+
+    <script>
+        let counter = 0;
+        let interval;
+
+        function startCounter() {
+            if (!interval) {
+                interval = setInterval(() => {
+                    counter++;
+                    document.getElementById('counter').textContent = counter;
+                }, 1000); 
+            }
+        }
+
+        function stopCounter() {
+            clearInterval(interval);
+            interval = null; 
+        }
+    </script>
+</body>
+</html>
