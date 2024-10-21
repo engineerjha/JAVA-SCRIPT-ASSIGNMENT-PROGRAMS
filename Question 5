@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Roll Number Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #3779ae;
+            padding: 200px;
+            border-radius: 4rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            
+        }
+
+        button {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+
+        }
+
+        .output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="rollNumber" placeholder="Enter Roll Number (e.g., ES19CS01)">
+        <button onclick="analyzeRollNumber()">Analyze Roll Number</button>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function analyzeRollNumber() {
+            const rollNumber = document.getElementById('rollNumber').value.trim().toUpperCase();
+            const output = document.getElementById('output');
+
+            const currentYear = new Date().getFullYear();
+            const admissionYear = parseInt('20' + rollNumber.slice(2, 4));
+            const branchCode = rollNumber.slice(4, 6);
+            const yearOfStudy = currentYear - admissionYear + 1;
+
+            const branches = {
+                'CS': 'Computer Science',
+                'EC': 'Electronics and Communication',
+                'ME': 'Mechanical Engineering',
+                'IT': 'Information Technology',
+                'EE': 'Electrical Engineering',
+                'CE': 'Civil Engineering'
+
+            };
+
+            let yearLabel = '';
+            switch (yearOfStudy) {
+                case 1:
+                    yearLabel = 'First year';
+                    break;
+                case 2:
+                    yearLabel = 'Second year';
+                    break;
+                case 3:
+                    yearLabel = 'Third year';
+                    break;
+                case 4:
+                    yearLabel = 'Final year';
+                    break;
+                default:
+                    yearLabel = 'Graduated or Invalid year';
+                    break;
+            }
+
+            if (branches[branchCode]) {
+                output.textContent = `${yearLabel} ${branches[branchCode]}`;
+            } else {
+                output.textContent = 'Invalid branch code or roll number format.';
+            }
+        }
+    </script>
+</body>
+</html>
