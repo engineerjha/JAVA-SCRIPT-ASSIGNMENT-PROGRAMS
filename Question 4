@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Number Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #6da5c6;
+            padding: 200px;
+            border-radius: 8rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 26px;
+        }
+
+        button {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 26px;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .valid {
+            color: rgb(64, 24, 225);
+            font-weight: bold;
+            font-size: 26px;
+
+        }
+
+        .invalid {
+            color: red;
+            font-weight: bold;
+            font-size: 26px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="mobileNumber" placeholder="Enter mobile number">
+        <button onclick="validateMobileNumber()">Validate</button>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        function validateMobileNumber() {
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            const message = document.getElementById('message');
+            const mobileRegex = /^[0-9]{10}$/;
+
+            if (mobileRegex.test(mobileNumber)) {
+                message.textContent = 'Valid mobile number!';
+                message.className = 'valid';
+            } else {
+                message.textContent = 'Invalid mobile number. Please enter a 10-digit number.';
+                message.className = 'invalid';
+            }
+        }
+    </script>
+</body>
+</html>
