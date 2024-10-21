@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragraph Styling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #568b97;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0 10px;
+        }
+
+        .container {
+            background: #9a48b3;
+            padding: 200px;
+            border-radius: 8rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        select, input[type="color"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 0.3rem solid #20c999;
+        }
+
+        p {
+            margin-top: 30px;
+            font-size: 36px;
+            font-weight: bold;
+            color: #110c05;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <label for="fontType">Font Type:</label>
+            <select id="fontType" onchange="changeFontType()">
+                <option value="Arial">Arial</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Verdana">Verdana</option>
+            </select>
+
+            <label for="fontSize">Font Size:</label>
+            <select id="fontSize" onchange="changeFontSize()">
+                <option value="14px">14px</option>
+                <option value="16px">16px</option>
+                <option value="18px">18px</option>
+                <option value="20px">20px</option>
+                <option value="24px">24px</option>
+            </select>
+
+            <label for="textColor">Text Color:</label>
+            <input type="color" id="textColor" onchange="changeTextColor()">
+        </div>
+
+        <p id="paragraph">
+            This is a sample paragraph. Change the font type, size, and color using the controls above.
+        </p>
+    </div>
+
+    <script>
+        function changeFontType() {
+            const fontType = document.getElementById('fontType').value;
+            const paragraph = document.getElementById('paragraph');
+            paragraph.style.fontFamily = fontType;
+        }
+
+        function changeFontSize() {
+            const fontSize = document.getElementById('fontSize').value;
+            const paragraph = document.getElementById('paragraph');
+            paragraph.style.fontSize = fontSize;
+        }
+
+        function changeTextColor() {
+            const textColor = document.getElementById('textColor').value;
+            const paragraph = document.getElementById('paragraph');
+            paragraph.style.color = textColor;
+        }
+    </script>
+</body>
+</html>
