@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .container {
+            background: #7b9ac0;
+            padding: 200px;
+            border-radius: 6rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        #passwordDisplay {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(173, 3, 108, 0.1);
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Password Generator</h2>
+        <button onclick="generatePassword()">Generate Password</button>
+        <input type="text" id="passwordDisplay" readonly>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+            const digits = '0123456789';
+            const specialChars = '!@#$%^&*()_+-=';
+            let password = '';
+
+            // Generate 2 random uppercase letters
+            for (let i = 0; i < 2; i++) {
+                password += uppercaseLetters.charAt(Math.floor(Math.random() * uppercaseLetters.length));
+            }
+
+            // Generate 1 random digit
+            password += digits.charAt(Math.floor(Math.random() * digits.length));
+
+            // Generate remaining 5 characters (can be lowercase, digits, or special characters)
+            const allChars = uppercaseLetters + lowercaseLetters + digits + specialChars;
+            for (let i = 0; i < 5; i++) {
+                password += allChars.charAt(Math.floor(Math.random() * allChars.length));
+            }
+
+            // Shuffle the password to make it more secure
+            password = password.split('').sort(() => Math.random() - 0.5).join('');
+
+            // Display the generated password
+            document.getElementById('passwordDisplay').value = password;
+        }
+    </script>
+</body>
+</html>
